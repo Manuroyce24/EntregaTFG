@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<link rel="stylesheet" th:href="@{../css/main.css}">
+
+<meta charset="UTF-8">
+</head>
+
+<body>
+	<header th:fragment="header">
+		<div class="topnav">
+			<a class="active" th:href="@{/home}"> <img
+				th:src="@{/images/ThirtyLogo.png}" alt="Thirty" class="logo-image" />
+			</a> <span sec:authorize="hasRole('ROLE_USER')"> <a class="left"
+				th:href="@{/createNewPost}">Nuevo post</a> <a class="left"
+				th:href="@{/friend-request/friends}">Amigos</a> <span
+				sec:authorize="isAuthenticated()"> <a class="left"
+					th:href="@{/mensajes}">Mensajes</a>
+			</span>
+
+
+			</span> <span sec:authorize="isAuthenticated()"> <a
+				class="right cerrar-sesion" th:href="@{/logout}">Cerrar sesión</a>
+
+			</span> <span sec:authorize="isAuthenticated()"> <a class="right"
+				th:href="@{${currentUser != null} ? '/profile/' + ${currentUser.id} : ''}"
+				sec:authorize="isAuthenticated()"> <span
+					sec:authentication="name">nombre?</span>
+			</a>
+
+
+			</span> <span sec:authorize="!isAuthenticated()"> <a
+				class="right iniciar-sesion" th:href="@{/login}">Iniciar sesión</a>
+				<a class="right" th:href="@{/signup}">Registrarse</a>
+			</span>
+
+			<form th:action="@{/home}" method="get" class="search-container">
+				<input type="text" placeholder="Buscar..." name="search"
+					th:value="${search}">
+				<button id="buscar" type="submit">Buscar</button>
+
+			</form>
+		</div>
+	</header>
+
+</body>
+
+</html>

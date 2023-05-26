@@ -1,0 +1,144 @@
+:root {
+	background-image: url(/images/fondo.jpg);
+	background-size: cover;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.center-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: auto;
+	margin-top: 10%;
+}
+
+#formulario input[type="text"], #formulario input[type="password"] {
+	width: 100%;
+	height: auto;
+	font-weight: bold;
+}
+
+.button-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+body {
+	font-family: 'Quicksand', sans-serif;
+	padding: 0;
+	background: #f1f1f1;
+	width: 80%;
+	margin: auto;
+	margin-top: 100px;
+}
+
+.header {
+	padding: 10px;
+	font-size: 25px;
+	text-align: center;
+	background: white;
+}
+
+.iniciar-sesion, .cerrar-sesion {
+	border-radius: 15px;
+	display: inline-block;
+	background-color: #9b59b6;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px;
+	border: none;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 40%;
+	max-width: 300px;
+	height: 40%;
+	max-height: 350px;
+	background-color: #DDA0DD;
+	box-sizing: border-box;
+	margin: 0;
+	padding-top: 0;
+	border-radius: 15px;
+}
+
+@media screen and (max-width: 767px) {
+	.container {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 77%;
+		max-width: 300px;
+		height: 63%;
+		max-height: 370px;
+		background-color: #DDA0DD;
+		box-sizing: border-box;
+		margin: 0;
+		padding-top: 0;
+		border-radius: 15px;
+	}
+}
+
+#username {
+	margin-top: 6%
+}
+
+.container-header {
+	background-color: #800080;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	border-radius: 15px 15px 0px 0px;
+}
+
+.container-header h1 {
+	margin: 0;
+}
+
+.container input, .container button {
+	width: 57%;
+	margin: 3%;
+}
+
+.container button {
+	margin-top: 10%;
+}
+
+form {
+	margin: auto;
+	width: 80%;
+}
+
+.alert-red {
+	padding: 5px;
+	background-color: #f44336;
+	color: white;
+	margin: 5px auto;
+	width: 80%;
+}
+
+.alert-green {
+	padding: 8px;
+	background-color: green;
+	color: white;
+	margin: 15px auto;
+	width: 80%;
+}
+
+input, select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}

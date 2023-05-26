@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+
+    <div th:replace="/fragments/header :: header"></div>
+
+    <div class="container">
+        <div id="postsContainer" th:include="/fragments/posts :: posts(posts=${posts})"></div>
+        <button id="loadMoreButton" class="btn btn-primary">Cargar más</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            let page = 1;
+            let allPosts = [];
+
+            function displayPosts(posts) {
+                $('#postsContainer').empty().append(posts);
+            }
+
+            $('#loadMoreButton').click(function () {
+                $.get("/home?page=" + page, function (data) {
+                    const newPosts = $(data).find('.post');
+                    console.log("Nuevas publicaciones obtenidas: ", newPosts);
+                    if (newPosts.length > 0) {
+                        $('#postsContainer').append(newPosts);
+                        allPosts = allPosts.concat(Array.from(newPosts));
+                        page++;
+                    } else {
+                        $('#loadMoreButton').text('No hay más publicaciones').prop('disabled', true);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+
+</html>

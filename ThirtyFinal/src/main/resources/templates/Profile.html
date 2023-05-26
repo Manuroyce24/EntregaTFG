@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head"></head>
+<link rel="icon" type="image/png" href="../images/logo.png" />
+
+<body>
+
+	<div th:replace="/fragments/header :: header"></div>
+
+	<div class="container">
+		<h1 id="perfil" class="mt-5 mb-4">Perfil de Usuario</h1>
+
+		<div class="row user-profile">
+			<div class="col-md-4">
+			</div>
+			<div class="col-md-8">
+				<div class="user-name">
+
+					<h3>
+						<span id="datosUser">Nombre: </span><span id="letraperfil"
+							th:text="${profileUser.username}"></span>
+					</h3>
+				</div>
+
+				<h3>
+					<span id="datosUser">Apellido: </span><span id="letraperfil"
+						th:text="${profileUser.apellido}"></span>
+				</h3>
+				<h3>
+					<span id="datosUser">Email: </span><span id="letraperfil" th:text="${profileUser.email}"></span>
+				</h3>
+
+				<div id="profileeditar" th:if="${#authentication.principal.username == profileUser.username}">
+					<a th:href="@{/editProfile}" id="editar">Editar perfil</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="mt-5">
+			<h2 id="perfil">Publicaciones del usuario</h2>
+			<div th:each="post : ${profileUser.posts}">
+				<div class="card mb-3">
+					<div class="card-header">
+						<h3 class="post-title" th:text="${post.title}"></h3>
+					</div>
+					<div class="card-body">
+						<img class="post-image" th:if="${post.image}" th:src="@{'/post/image/' + ${post.id}}" />
+
+						<p class="post-body" th:utext="${post.body}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+
+</html>

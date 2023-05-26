@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="/fragments/head :: head"></head>
+
+<body>
+
+    <div th:replace="/fragments/header :: header"></div>
+
+    <div class="containerPost">
+        <form action="#" th:action="@{'/createNewPost'}" th:object="${post}" method="post">
+            <h2 id="nuevapubli">Escribe una nueva publicación</h2>
+            <div>
+                <input type="hidden" th:field="*{id}" />
+                <label>
+                    <div class="alert-red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Título incorrecto
+                    </div>
+                    <input type="text" th:field="*{title}" placeholder="Título" />
+                </label>
+            </div>
+            <div>
+                <label>
+                    <div class="alert-red" th:if="${#fields.hasErrors('body')}" th:errors="*{body}">Error en el
+                        contenido</div>
+                    <textarea id="post-editor" th:field="*{body}" placeholder="Descripción"></textarea>
+                </label>
+            </div>
+            <div class="text-right button-container">
+
+                <div class="float-right">
+                    <button class="green-btn" type="submit">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        tinymce.init({
+            selector: '#post-editor'
+        });
+    </script>
+
+    <footer th:replace="/fragments/footer :: footer"></footer>
+
+</body>
+
+</html>

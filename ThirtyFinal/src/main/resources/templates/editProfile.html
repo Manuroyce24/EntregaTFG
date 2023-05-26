@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" th:href="@{../css/editar.css}">
+<meta charset="UTF-8">
+<title>Editar Perfil</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="container-header">
+			<h1>Thirty - Editar Perfil</h1>
+		</div>
+
+		<div th:if="${error}" class="alert alert-danger" role="alert">
+			<p id="errorpassword" th:text="${error}"></p>
+		</div>
+
+		<form th:action="@{'/editProfile'}" th:object="${blogUser}"
+			method="post">
+			<div class="form-group">
+				<label for="username">Nombre de Usuario: </label> <input type="text"
+					th:field="*{username}" id="username" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="email">Correo Electrónico: </label> <input type="email"
+					th:field="*{email}" id="email" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="apellido">Apellidos: </label> <input type="text"
+					th:field="*{Apellido}" id="apellido" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="currentPassword">Contraseña Actual: </label> <input
+					type="password" name="currentPassword" id="currentPassword"
+					class="form-control" required>
+			</div>
+
+			<button type="submit" id="guardar">Guardar Cambios</button>
+			<button id="atras" class="right atras">Atras</button>
+		</form>
+
+		<script th:inline="javascript">
+			var profileUserId = 
+			/*[[${blogUser.id}]]*/'';
+		</script>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('.atras').click(function(e) {
+				e.preventDefault();
+				window.location.href = '/profile/' + profileUserId;
+			});
+		});
+		$(document).ready(function() {
+			$('.atras').click(function(e) {
+				e.preventDefault();
+				window.location.href = '/profile/' + profileUserId;
+			});
+		});
+	</script>
+</body>
+
+</html>

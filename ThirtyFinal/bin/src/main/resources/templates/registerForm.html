@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" th:href="@{../css/registro.css}">
+	<meta charset="UTF-8">
+	<title>Registro</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="container-header">
+			<h1>Thirty - Registro</h1>
+		</div>
+
+		<form th:action="@{/register}" th:object="${blogUser}" method="post" class="center-form">
+			<div>
+				<span>Nombre de Usuario: </span> <input type="text" th:field="*{username}"
+					placeholder="Nombre de usuario" required="true" autofocus="true" />
+				<div class="alert-red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error de usuario
+				</div>
+			</div>
+			<div>
+				<span>Apellido: </span> <input type="text" th:field="*{apellido}" placeholder="Apellido"
+					required="true" />
+				<div class="alert-red" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error de
+					apellidos</div>
+			</div>
+			<div>
+				<span>Contraseña: </span> <input type="password" th:field="*{password}" placeholder="Contraseña"
+					required="true" />
+				<div class="alert-red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error de
+					contraseña</div>
+			</div>
+			<div>
+				<span>Confirmar Contraseña: </span> <input type="password" th:field="*{confirmPassword}"
+					placeholder="Confirmar contraseña" required="true" />
+				<div class="alert-red" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">
+					Error de confirmación de
+					contraseña</div>
+			</div>
+			<div>
+				<span>Correo Electronico: </span> <input type="email" th:field="*{email}"
+					placeholder="Correo electrónico" required="true" />
+				<div class="alert-red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error de correo
+					electrónico</div>
+			</div>
+
+
+			<div class="button-container">
+				<button class="right iniciar-sesion" type="submit">Registrar</button>
+
+				<button class="right atras" onclick="location.href='@{/login}'">Atras</button>
+			</div>
+
+		</form>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.atras').click(function (e) {
+				e.preventDefault();
+				window.location.href = '/login';
+			});
+
+		});
+	</script>
+</body>
+
+</html>

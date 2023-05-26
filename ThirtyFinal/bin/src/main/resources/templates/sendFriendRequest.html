@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Enviar solicitud de amistad</title>
+</head>
+
+<body>
+    <h1>Enviar solicitud de amistad</h1>
+    <form th:action="@{/friend-request/send}" method="post">
+        <label for="receiverUsername">Nombre de usuario del destinatario:</label>
+        <input type="text" id="receiverUsername" name="receiverUsername" required>
+        <button type="submit">Enviar solicitud</button>
+    </form>
+</body>
+
+</html>

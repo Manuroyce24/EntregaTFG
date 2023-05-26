@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Solicitudes de amistad</title>
+    <!-- Agregar estilos y scripts necesarios aquí -->
+</head>
+<body>
+    <h1>Solicitudes de amistad pendientes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Enviado por</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="friendRequest : ${friendRequests}">
+                <td th:text="${friendRequest.sender.username}"></td>
+                <td>
+                    <form th:action="@{/acceptFriendRequest}" method="post">
+                        <input type="hidden" th:value="${friendRequest.id}" name="friendRequestId">
+                        <button type="submit">Aceptar</button>
+                    </form>
+                    <form th:action="@{/rejectFriendRequest}" method="post">
+                        <input type="hidden" th:value="${friendRequest.id}" name="friendRequestId">
+                        <button type="submit">Rechazar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

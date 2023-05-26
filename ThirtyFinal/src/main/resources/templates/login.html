@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" th:href="@{/css/inicio.css}">
+	<meta charset="UTF-8">
+	<link rel="icon" type="image/png" href="images/logo.png" />
+	
+	<title>Thirty</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="container-header">
+			<h1>Thirty</h1>
+		</div>
+		<div th:if="${param.error}">
+			<p class="alert-red">Nombre o contraseña incorrectos</p>
+		</div>
+		<div th:if="${param.logout}">
+			<p class="alert-green">Cierre de sesión exitoso</p>
+		</div>
+		<form id="formulario" th:action="@{/login}" method="post" class="center-form">
+			<div>
+				<input type="text" name="username" id="username" placeholder="Nombre de usuario" required="true"
+					autofocus="true" />
+			</div>
+			<div>
+				<input type="password" name="password" id="password" placeholder="Contraseña" required="true" />
+			</div>
+			<div>
+				<span sec:authorize="!isAuthenticated()" class="button-container">
+					<button class="right iniciar-sesion">Iniciar sesión</button>
+					<button class="right cerrar-sesion">Registrarse</button>
+				</span>
+			</div>
+		</form>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.cerrar-sesion').click(function (e) {
+				e.preventDefault();
+				window.location.href = '/signup';
+			});
+		});
+	</script>
+</body>
+
+</html>
